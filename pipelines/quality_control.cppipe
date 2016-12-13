@@ -1,0 +1,328 @@
+CellProfiler Pipeline: http://www.cellprofiler.org
+Version:3
+DateRevision:20140723174500
+GitHash:6c2d896
+ModuleCount:8
+HasImagePlaneDetails:False
+
+Images:[module_num:1|svn_version:\'Unknown\'|variable_revision_number:2|show_window:False|notes:\x5B\'To begin creating your project, use the Images module to compile a list of files and/or folders that you want to analyze. You can also specify a set of rules to include only the desired files in your selected folders.\', \'\', \'For a large screen, it may take a long time to read and collect all the images. E.g., for a screen of 830k files (images+thumbnails), it took ~2 hrs to process. However, this only needs to be done once as the file list is saved as part of the project file.\', \'\', \'Recommended to save time\x3A Drag/drop the images once for a single project (e.g, QC), save the project as a template and then copy/paste analysis modules from the other two by opening additional instances of CellProfiler, then save them as separate projects.\'\x5D|batch_state:array(\x5B\x5D, dtype=uint8)|enabled:True|wants_pause:False]
+    :
+    Filter images?:Custom
+    Select the rule criteria:and (extension does istif)
+
+Metadata:[module_num:2|svn_version:\'Unknown\'|variable_revision_number:4|show_window:False|notes:\x5B\'The Metadata module optionally allows you to extract information describing your images (i.e, metadata) which will be stored along with your measurements. This information can be contained in the file name and/or location, or in an external file.\', \'\', \'The settings here allow the user to extract (assuming an ImageXpress microscope is used)\x3A\', \'* The Well and Site IDs from the filename, as well as the channel number.\', \'* The 5-digit Plate ID from the folder name. If needed, the regular expression can modified to collect the barcode ID as well.\'\x5D|batch_state:array(\x5B\x5D, dtype=uint8)|enabled:True|wants_pause:False]
+    Extract metadata?:Yes
+    Metadata data type:Text
+    Metadata types:{}
+    Extraction method count:2
+    Metadata extraction method:Extract from file/folder names
+    Metadata source:File name
+    Regular expression:_(?P<CPD_WELL_POSITION>\x5Ba-p\x5D\x5B0-9\x5D{2})_s(?P<Site>\x5B0-9\x5D)_w(?P<ChannelNumber>\x5B0-9\x5D)
+    Regular expression:(?P<Date>\x5B0-9\x5D{4}_\x5B0-9\x5D{2}_\x5B0-9\x5D{2})$
+    Extract metadata from:All images
+    Select the filtering criteria:and (file does contain "")
+    Metadata file location:
+    Match file and image metadata:\x5B\x5D
+    Use case insensitive matching?:No
+    Metadata extraction method:Extract from file/folder names
+    Metadata source:Folder name
+    Regular expression:^(?P<Plate>.*)_(?P<Well>\x5BA-P\x5D\x5B0-9\x5D{2})_s(?P<Site>\x5B0-9\x5D)_w(?P<ChannelNumber>\x5B0-9\x5D)
+    Regular expression:\x5B\\\\\\\\/\x5D(?P<PlateID>\x5B0-9\x5D{5})
+    Extract metadata from:All images
+    Select the filtering criteria:and (file does contain "")
+    Metadata file location:
+    Match file and image metadata:\x5B\x5D
+    Use case insensitive matching?:No
+
+NamesAndTypes:[module_num:3|svn_version:\'Unknown\'|variable_revision_number:5|show_window:False|notes:\x5B\'The NamesAndTypes module allows you to assign a meaningful name to each image by which other modules will refer to it.\', \'\', \'The settings her match the channels by the channel number collected in the Metadata module.\', \'Setting the image set matching method to "Metadata" has the advantage of omitting sites in which there is a metadata mismatch, i.e, missing files.\'\x5D|batch_state:array(\x5B\x5D, dtype=uint8)|enabled:True|wants_pause:False]
+    Assign a name to:Images matching rules
+    Select the image type:Grayscale image
+    Name to assign these images:DNA
+    Match metadata:\x5B{u\'OrigER\'\x3A u\'PlateID\', u\'OrigAGP\'\x3A u\'PlateID\', u\'OrigRNA\'\x3A u\'PlateID\', u\'OrigDNA\'\x3A u\'PlateID\', u\'OrigMito\'\x3A u\'PlateID\'}, {u\'OrigER\'\x3A u\'CPD_WELL_POSITION\', u\'OrigAGP\'\x3A u\'CPD_WELL_POSITION\', u\'OrigRNA\'\x3A u\'CPD_WELL_POSITION\', u\'OrigDNA\'\x3A u\'CPD_WELL_POSITION\', u\'OrigMito\'\x3A u\'CPD_WELL_POSITION\'}, {u\'OrigER\'\x3A u\'Site\', u\'OrigAGP\'\x3A u\'Site\', u\'OrigRNA\'\x3A u\'Site\', u\'OrigDNA\'\x3A u\'Site\', u\'OrigMito\'\x3A u\'Site\'}\x5D
+    Image set matching method:Metadata
+    Set intensity range from:Image metadata
+    Assignments count:5
+    Single images count:0
+    Select the rule criteria:and (metadata does ChannelNumber "1")
+    Name to assign these images:OrigDNA
+    Name to assign these objects:Cell
+    Select the image type:Grayscale image
+    Set intensity range from:Image metadata
+    Retain outlines of loaded objects?:No
+    Name the outline image:LoadedOutlines
+    Select the rule criteria:and (metadata does ChannelNumber "2")
+    Name to assign these images:OrigER
+    Name to assign these objects:Nucleus
+    Select the image type:Grayscale image
+    Set intensity range from:Image metadata
+    Retain outlines of loaded objects?:No
+    Name the outline image:LoadedOutlines
+    Select the rule criteria:and (metadata does ChannelNumber "3")
+    Name to assign these images:OrigRNA
+    Name to assign these objects:Cytoplasm
+    Select the image type:Grayscale image
+    Set intensity range from:Image metadata
+    Retain outlines of loaded objects?:No
+    Name the outline image:LoadedOutlines
+    Select the rule criteria:and (metadata does ChannelNumber "4")
+    Name to assign these images:OrigAGP
+    Name to assign these objects:Speckle
+    Select the image type:Grayscale image
+    Set intensity range from:Image metadata
+    Retain outlines of loaded objects?:No
+    Name the outline image:LoadedOutlines
+    Select the rule criteria:and (metadata does ChannelNumber "5")
+    Name to assign these images:OrigMito
+    Name to assign these objects:Object1
+    Select the image type:Grayscale image
+    Set intensity range from:Image metadata
+    Retain outlines of loaded objects?:No
+    Name the outline image:LoadedOutlines
+
+Groups:[module_num:4|svn_version:\'Unknown\'|variable_revision_number:2|show_window:False|notes:\x5B\'The Groups module optionally allows you to split your list of images into image subsets (groups) which will be processed independently of each other. Examples of groupings include screening batches, microtiter plates, time-lapse movies, etc.\', \'\', \'The Groups module optionally allows you to split your list of images into image subsets (groups) which will be processed independently of each other. Examples of groupings include screening batches, microtiter plates, time-lapse movies, etc.\', \'\', \'No grouping is needed, so this module is not enabled.\'\x5D|batch_state:array(\x5B\x5D, dtype=uint8)|enabled:True|wants_pause:False]
+    Do you want to group your images?:No
+    grouping metadata count:1
+    Metadata category:None
+
+MeasureImageQuality:[module_num:5|svn_version:\'Unknown\'|variable_revision_number:5|show_window:True|notes:\x5B\'Generate image quality measurements for all channels. Image features made here include image blur measurements at multiple spatial scales, saturation metrics, and intensity-based measures.\'\x5D|batch_state:array(\x5B\x5D, dtype=uint8)|enabled:True|wants_pause:False]
+    Calculate metrics for which images?:All loaded images
+    Image count:1
+    Scale count:4
+    Threshold count:1
+    Select the images to measure:
+    Include the image rescaling value?:Yes
+    Calculate blur metrics?:Yes
+    Spatial scale for blur measurements:2
+    Spatial scale for blur measurements:5
+    Spatial scale for blur measurements:10
+    Spatial scale for blur measurements:20
+    Calculate saturation metrics?:Yes
+    Calculate intensity metrics?:Yes
+    Calculate thresholds?:No
+    Use all thresholding methods?:Yes
+    Select a thresholding method:Otsu
+    Typical fraction of the image covered by objects:0.1
+    Two-class or three-class thresholding?:Two classes
+    Minimize the weighted variance or the entropy?:Weighted variance
+    Assign pixels in the middle intensity class to the foreground or the background?:Foreground
+
+MeasureImageQuality:[module_num:6|svn_version:\'Unknown\'|variable_revision_number:5|show_window:True|notes:\x5B\'In addition to the more general image QC features, collect the thresholds for the DNA and RNA images. We use these two channels because the DNA image is used for nuclei identification and the RNA image is used for cell body identification. Examining the histogram of these values is often helpful in setting the lower threshold bound, as well as getting a sense of what outliers look like.\', \'\', \'Note that different threshold methods are calculated for each channel, although more could be added. Also note that even though the channels will be illumination corrected in the feature extraction pipeline, we have not found that it affects QC assessment substantially.\'\x5D|batch_state:array(\x5B\x5D, dtype=uint8)|enabled:True|wants_pause:False]
+    Calculate metrics for which images?:Select...
+    Image count:2
+    Scale count:1
+    Threshold count:1
+    Scale count:1
+    Threshold count:1
+    Select the images to measure:OrigDNA
+    Include the image rescaling value?:No
+    Calculate blur metrics?:No
+    Spatial scale for blur measurements:20
+    Calculate saturation metrics?:No
+    Calculate intensity metrics?:No
+    Calculate thresholds?:Yes
+    Use all thresholding methods?:No
+    Select a thresholding method:Otsu
+    Typical fraction of the image covered by objects:0.1
+    Two-class or three-class thresholding?:Two classes
+    Minimize the weighted variance or the entropy?:Weighted variance
+    Assign pixels in the middle intensity class to the foreground or the background?:Background
+    Select the images to measure:OrigRNA
+    Include the image rescaling value?:No
+    Calculate blur metrics?:No
+    Spatial scale for blur measurements:20
+    Calculate saturation metrics?:No
+    Calculate intensity metrics?:No
+    Calculate thresholds?:Yes
+    Use all thresholding methods?:No
+    Select a thresholding method:Otsu
+    Typical fraction of the image covered by objects:0.1
+    Two-class or three-class thresholding?:Three classes
+    Minimize the weighted variance or the entropy?:Weighted variance
+    Assign pixels in the middle intensity class to the foreground or the background?:Foreground
+
+ExportToDatabase:[module_num:7|svn_version:\'Unknown\'|variable_revision_number:26|show_window:True|notes:\x5B\'Write the quality control measurements to the database of your choice, and create a properties file for exploring the data with CellProfiler Analyst. A CellProfiler Analyst properties file and workspace file are also created as well.\', \'\', \'Change the table prefix to same as the folder (tables cannot start with a number)\'\x5D|batch_state:array(\x5B\x5D, dtype=uint8)|enabled:True|wants_pause:False]
+    Database type:MySQL
+    Database name:dbname
+    Add a prefix to table names?:Yes
+    Table prefix:qc
+    SQL file prefix:SQL_
+    Output file location:Default Output Folder\x7C/imaging/analysis/2011_07_13_TargetAccelerator_CancerProgram_MPG/2013_10_11_SIGMA2_Pilot/Output/QC
+    Create a CellProfiler Analyst properties file?:Yes
+    Database host:hostname
+    Username:username
+    Password:password
+    Name the SQLite database file:DefaultDB.db
+    Calculate the per-image mean values of object measurements?:No
+    Calculate the per-image median values of object measurements?:No
+    Calculate the per-image standard deviation values of object measurements?:No
+    Calculate the per-well mean values of object measurements?:No
+    Calculate the per-well median values of object measurements?:No
+    Calculate the per-well standard deviation values of object measurements?:No
+    Export measurements for all objects to the database?:None
+    Select the objects:
+    Maximum # of characters in a column name:64
+    Create one table per object, a single object table or a single object view?:Single object table
+    Enter an image url prepend if you plan to access your files via http:
+    Write image thumbnails directly to the database?:Yes
+    Select the images for which you want to save thumbnails:OrigAGP,OrigDNA,OrigER,OrigMito,OrigRNA
+    Auto-scale thumbnail pixel intensities?:Yes
+    Select the plate type:384
+    Select the plate metadata:PlateID
+    Select the well metadata:CPD_WELL_POSITION
+    Include information for all images, using default values?:No
+    Properties image group count:5
+    Properties group field count:1
+    Properties filter field count:0
+    Workspace measurement count:12
+    Experiment name:qc
+    Which objects should be used for locations?:None
+    Enter a phenotype class table name if using the classifier tool:
+    Export object relationships?:No
+    Overwrite without warning?:Data only
+    Access CPA images via URL?:Yes
+    Select an image to include:OrigDNA
+    Use the image name for the display?:No
+    Image name:Hoechst
+    Channel color:red
+    Select an image to include:OrigER
+    Use the image name for the display?:No
+    Image name:ER
+    Channel color:green
+    Select an image to include:OrigRNA
+    Use the image name for the display?:No
+    Image name:RNA
+    Channel color:blue
+    Select an image to include:OrigAGP
+    Use the image name for the display?:No
+    Image name:AGP
+    Channel color:yellow
+    Select an image to include:OrigMito
+    Use the image name for the display?:No
+    Image name:Mito
+    Channel color:magenta
+    Do you want to add group fields?:No
+    Enter the name of the group:
+    Enter the per-image columns which define the group, separated by commas:ImageNumber, Image_Metadata_Plate, Image_Metadata_Well
+    Do you want to add filter fields?:No
+    Automatically create a filter for each plate?:No
+    Create a CellProfiler Analyst workspace file?:Yes
+    Select the measurement display tool:ScatterPlot
+    Type of measurement to plot on the X-axis:Index
+    Enter the object name:Image
+    Select the X-axis measurement:
+    Select the X-axis index:ImageNumber
+    Type of measurement to plot on the Y-axis:Image
+    Enter the object name:Image
+    Select the Y-axis measurement:ImageQuality_PowerLogLogSlope_OrigDNA
+    Select the Y-axis index:ImageNumber
+    Select the measurement display tool:ScatterPlot
+    Type of measurement to plot on the X-axis:Index
+    Enter the object name:None
+    Select the X-axis measurement:None
+    Select the X-axis index:ImageNumber
+    Type of measurement to plot on the Y-axis:Image
+    Enter the object name:None
+    Select the Y-axis measurement:ImageQuality_PowerLogLogSlope_OrigER
+    Select the Y-axis index:ImageNumber
+    Select the measurement display tool:ScatterPlot
+    Type of measurement to plot on the X-axis:Index
+    Enter the object name:None
+    Select the X-axis measurement:None
+    Select the X-axis index:ImageNumber
+    Type of measurement to plot on the Y-axis:Image
+    Enter the object name:None
+    Select the Y-axis measurement:ImageQuality_PowerLogLogSlope_OrigRNA
+    Select the Y-axis index:ImageNumber
+    Select the measurement display tool:ScatterPlot
+    Type of measurement to plot on the X-axis:Index
+    Enter the object name:None
+    Select the X-axis measurement:None
+    Select the X-axis index:ImageNumber
+    Type of measurement to plot on the Y-axis:Image
+    Enter the object name:None
+    Select the Y-axis measurement:ImageQuality_PowerLogLogSlope_OrigAGP
+    Select the Y-axis index:ImageNumber
+    Select the measurement display tool:ScatterPlot
+    Type of measurement to plot on the X-axis:Index
+    Enter the object name:None
+    Select the X-axis measurement:None
+    Select the X-axis index:ImageNumber
+    Type of measurement to plot on the Y-axis:Image
+    Enter the object name:None
+    Select the Y-axis measurement:ImageQuality_PowerLogLogSlope_OrigMito
+    Select the Y-axis index:ImageNumber
+    Select the measurement display tool:ScatterPlot
+    Type of measurement to plot on the X-axis:Image
+    Enter the object name:None
+    Select the X-axis measurement:ImageQuality_StdIntensity_OrigDNA
+    Select the X-axis index:ImageNumber
+    Type of measurement to plot on the Y-axis:Image
+    Enter the object name:None
+    Select the Y-axis measurement:ImageQuality_PercentMaximal_OrigDNA
+    Select the Y-axis index:ImageNumber
+    Select the measurement display tool:ScatterPlot
+    Type of measurement to plot on the X-axis:Image
+    Enter the object name:None
+    Select the X-axis measurement:ImageQuality_StdIntensity_OrigER
+    Select the X-axis index:ImageNumber
+    Type of measurement to plot on the Y-axis:Image
+    Enter the object name:None
+    Select the Y-axis measurement:ImageQuality_PercentMaximal_OrigER
+    Select the Y-axis index:ImageNumber
+    Select the measurement display tool:ScatterPlot
+    Type of measurement to plot on the X-axis:Image
+    Enter the object name:None
+    Select the X-axis measurement:ImageQuality_StdIntensity_OrigRNA
+    Select the X-axis index:ImageNumber
+    Type of measurement to plot on the Y-axis:Image
+    Enter the object name:None
+    Select the Y-axis measurement:ImageQuality_PercentMaximal_OrigRNA
+    Select the Y-axis index:ImageNumber
+    Select the measurement display tool:ScatterPlot
+    Type of measurement to plot on the X-axis:Image
+    Enter the object name:None
+    Select the X-axis measurement:ImageQuality_StdIntensity_OrigAGP
+    Select the X-axis index:ImageNumber
+    Type of measurement to plot on the Y-axis:Image
+    Enter the object name:None
+    Select the Y-axis measurement:ImageQuality_PercentMaximal_OrigAGP
+    Select the Y-axis index:ImageNumber
+    Select the measurement display tool:ScatterPlot
+    Type of measurement to plot on the X-axis:Image
+    Enter the object name:None
+    Select the X-axis measurement:ImageQuality_StdIntensity_OrigMito
+    Select the X-axis index:ImageNumber
+    Type of measurement to plot on the Y-axis:Image
+    Enter the object name:None
+    Select the Y-axis measurement:ImageQuality_PercentMaximal_OrigMito
+    Select the Y-axis index:ImageNumber
+    Select the measurement display tool:Histogram
+    Type of measurement to plot on the X-axis:Image
+    Enter the object name:None
+    Select the X-axis measurement:ImageQuality_ThresholdOtsu_OrigDNA_2W
+    Select the X-axis index:ImageNumber
+    Type of measurement to plot on the Y-axis:Image
+    Enter the object name:None
+    Select the Y-axis measurement:None
+    Select the Y-axis index:ImageNumber
+    Select the measurement display tool:Histogram
+    Type of measurement to plot on the X-axis:Image
+    Enter the object name:None
+    Select the X-axis measurement:ImageQuality_ThresholdOtsu_OrigRNA_3FW
+    Select the X-axis index:ImageNumber
+    Type of measurement to plot on the Y-axis:Image
+    Enter the object name:None
+    Select the Y-axis measurement:None
+    Select the Y-axis index:ImageNumber
+
+CreateBatchFiles:[module_num:8|svn_version:\'Unknown\'|variable_revision_number:6|show_window:True|notes:\x5B\'This module is used only if running the pipeline on a computing cluster; it is used to convert all paths to the format as seen by the computing node. If not using a computing cluster (i.e, you are running the pipeline locally), disable this module by clicking on the green checkmark to the left of the module name; the checkmark is grayed out when the module is disabled.\'\x5D|batch_state:array(\x5B\x5D, dtype=uint8)|enabled:True|wants_pause:False]
+    Store batch files in default output folder?:Yes
+    Output folder path:/imaging/analysis/2011_07_13_TargetAccelerator_CancerProgram_MPG/2013_10_11_SIGMA2_Pilot/Output/QC
+    Are the cluster computers running Windows?:No
+    Hidden\x3A in batch mode:No
+    Hidden\x3A in distributed mode:No
+    Hidden\x3A default input folder at time of save:/imaging/analysis/2011_07_13_TargetAccelerator_CancerProgram_MPG/2013_10_11_SIGMA2_Pilot
+    Hidden\x3A revision number:20131013183127
+    Hidden\x3A from old matlab:No
+    Local root path:/cbnt/cbimage/HCS
+    Cluster root path:/cbnt/cbimage/HCS

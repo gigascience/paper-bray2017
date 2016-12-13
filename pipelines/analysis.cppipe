@@ -1,0 +1,420 @@
+CellProfiler Pipeline: http://www.cellprofiler.org
+Version:3
+DateRevision:20140723174500
+GitHash:6c2d896
+ModuleCount:17
+HasImagePlaneDetails:False
+
+Images:[module_num:1|svn_version:\'Unknown\'|variable_revision_number:2|show_window:True|notes:\x5B\'To begin creating your project, use the Images module to compile a list of files and/or folders that you want to analyze. You can also specify a set of rules to include only the desired files in your selected folders.\', \'\', \'For a large screen, it may take a long time to read and collect all the images. E.g., for a screen of 830k files (images+thumbnails), it took ~2 hrs to process. However, this only needs to be done once as the file list is saved as part of the project file.\', \'\', \'Recommended to save time\x3A Drag/drop the images once for a single project (e.g, QC), save the project as a template and then copy/paste analysis modules from the other two by opening additional instances of CellProfiler, then save them as separate projects.\'\x5D|batch_state:array(\x5B\x5D, dtype=uint8)|enabled:True|wants_pause:False]
+    :
+    Filter images?:Custom
+    Select the rule criteria:or (extension does istif) (file does endwith ".mat")
+
+Metadata:[module_num:2|svn_version:\'Unknown\'|variable_revision_number:4|show_window:True|notes:\x5B\'The Metadata module optionally allows you to extract information describing your images (i.e, metadata) which will be stored along with your measurements. This information can be contained in the file name and/or location, or in an external file.\', \'\', \'The settings here allow the user to extract (assuming an ImageXpress microscope is used)\x3A\', \'* The Well and Site IDs from the filename, as well as the channel number.\', \'* The 5-digit Plate from the folder name.\'\x5D|batch_state:array(\x5B\x5D, dtype=uint8)|enabled:True|wants_pause:False]
+    Extract metadata?:Yes
+    Metadata data type:Text
+    Metadata types:{}
+    Extraction method count:3
+    Metadata extraction method:Extract from file/folder names
+    Metadata source:File name
+    Regular expression:_(?P<CPD_WELL_POSITION>\x5Ba-p\x5D\x5B0-9\x5D{2})_s(?P<Site>\x5B0-9\x5D)_w(?P<ChannelNumber>\x5B0-9\x5D)
+    Regular expression:(?P<Date>\x5B0-9\x5D{4}_\x5B0-9\x5D{2}_\x5B0-9\x5D{2})$
+    Extract metadata from:Images matching a rule
+    Select the filtering criteria:and (extension does istif)
+    Metadata file location:
+    Match file and image metadata:\x5B\x5D
+    Use case insensitive matching?:No
+    Metadata extraction method:Extract from file/folder names
+    Metadata source:Folder name
+    Regular expression:^(?P<Plate>.*)_(?P<Well>\x5BA-P\x5D\x5B0-9\x5D{2})_s(?P<Site>\x5B0-9\x5D)_w(?P<ChannelNumber>\x5B0-9\x5D)
+    Regular expression:\x5B\\\\\\\\/\x5D(?P<PlateID>\x5B0-9\x5D{5})
+    Extract metadata from:Images matching a rule
+    Select the filtering criteria:and (extension does istif)
+    Metadata file location:
+    Match file and image metadata:\x5B\x5D
+    Use case insensitive matching?:No
+    Metadata extraction method:Extract from file/folder names
+    Metadata source:File name
+    Regular expression:^(?P<PlateID>\x5B0-9\x5D{5})_Illum
+    Regular expression:(?P<Date>\x5B0-9\x5D{4}_\x5B0-9\x5D{2}_\x5B0-9\x5D{2})$
+    Extract metadata from:Images matching a rule
+    Select the filtering criteria:and (file does endwith ".mat")
+    Metadata file location:
+    Match file and image metadata:\x5B\x5D
+    Use case insensitive matching?:No
+
+NamesAndTypes:[module_num:3|svn_version:\'Unknown\'|variable_revision_number:5|show_window:True|notes:\x5B\'The NamesAndTypes module allows you to assign a meaningful name to each image by which other modules will refer to it.\', \'\', \'The settings her match the channels by the channel number collected in the Metadata module.\', \'Setting the image set matching method to "Metadata" has the advantage of omitting sites in which there is a metadata mismatch, i.e, missing files.\'\x5D|batch_state:array(\x5B\x5D, dtype=uint8)|enabled:True|wants_pause:False]
+    Assign a name to:Images matching rules
+    Select the image type:Grayscale image
+    Name to assign these images:DNA
+    Match metadata:\x5B{\'IllumRNA\'\x3A u\'PlateID\', u\'OrigAGP\'\x3A u\'PlateID\', \'IllumMito\'\x3A u\'PlateID\', \'IllumER\'\x3A u\'PlateID\', u\'IllumDNA\'\x3A u\'PlateID\', u\'OrigER\'\x3A u\'PlateID\', \'IllumAGP\'\x3A u\'PlateID\', u\'OrigDNA\'\x3A u\'PlateID\', u\'OrigMito\'\x3A u\'PlateID\', u\'OrigRNA\'\x3A u\'PlateID\'}, {u\'OrigER\'\x3A u\'CPD_WELL_POSITION\', u\'OrigAGP\'\x3A u\'CPD_WELL_POSITION\', \'IllumMito\'\x3A None, u\'OrigRNA\'\x3A u\'CPD_WELL_POSITION\', \'IllumER\'\x3A None, \'IllumRNA\'\x3A None, \'IllumAGP\'\x3A None, u\'OrigMito\'\x3A u\'CPD_WELL_POSITION\', u\'IllumDNA\'\x3A None, u\'OrigDNA\'\x3A u\'CPD_WELL_POSITION\'}, {u\'OrigER\'\x3A u\'Site\', u\'OrigAGP\'\x3A u\'Site\', \'IllumMito\'\x3A None, u\'OrigRNA\'\x3A u\'Site\', \'IllumER\'\x3A None, \'IllumRNA\'\x3A None, \'IllumAGP\'\x3A None, u\'OrigMito\'\x3A u\'Site\', u\'IllumDNA\'\x3A None, u\'OrigDNA\'\x3A u\'Site\'}\x5D
+    Image set matching method:Metadata
+    Set intensity range from:Image metadata
+    Assignments count:10
+    Single images count:0
+    Select the rule criteria:and (metadata does ChannelNumber "1")
+    Name to assign these images:OrigDNA
+    Name to assign these objects:Object2
+    Select the image type:Grayscale image
+    Set intensity range from:Image metadata
+    Retain outlines of loaded objects?:No
+    Name the outline image:LoadedOutlines
+    Select the rule criteria:and (metadata does ChannelNumber "2")
+    Name to assign these images:OrigER
+    Name to assign these objects:Object3
+    Select the image type:Grayscale image
+    Set intensity range from:Image metadata
+    Retain outlines of loaded objects?:No
+    Name the outline image:LoadedOutlines
+    Select the rule criteria:and (metadata does ChannelNumber "3")
+    Name to assign these images:OrigRNA
+    Name to assign these objects:Object4
+    Select the image type:Grayscale image
+    Set intensity range from:Image metadata
+    Retain outlines of loaded objects?:No
+    Name the outline image:LoadedOutlines
+    Select the rule criteria:and (metadata does ChannelNumber "4")
+    Name to assign these images:OrigAGP
+    Name to assign these objects:Object5
+    Select the image type:Grayscale image
+    Set intensity range from:Image metadata
+    Retain outlines of loaded objects?:No
+    Name the outline image:LoadedOutlines
+    Select the rule criteria:and (metadata does ChannelNumber "5")
+    Name to assign these images:OrigMito
+    Name to assign these objects:Object6
+    Select the image type:Grayscale image
+    Set intensity range from:Image metadata
+    Retain outlines of loaded objects?:No
+    Name the outline image:LoadedOutlines
+    Select the rule criteria:and (file does endwith "IllumDNA.mat")
+    Name to assign these images:IllumDNA
+    Name to assign these objects:Cell
+    Select the image type:Illumination function
+    Set intensity range from:Image metadata
+    Retain outlines of loaded objects?:No
+    Name the outline image:LoadedOutlines
+    Select the rule criteria:and (file does endwith "IllumER.mat")
+    Name to assign these images:IllumER
+    Name to assign these objects:Nucleus
+    Select the image type:Illumination function
+    Set intensity range from:Image metadata
+    Retain outlines of loaded objects?:No
+    Name the outline image:LoadedOutlines
+    Select the rule criteria:and (file does endwith "IllumRNA.mat")
+    Name to assign these images:IllumRNA
+    Name to assign these objects:Cytoplasm
+    Select the image type:Illumination function
+    Set intensity range from:Image metadata
+    Retain outlines of loaded objects?:No
+    Name the outline image:LoadedOutlines
+    Select the rule criteria:and (file does endwith "IllumAGP.mat")
+    Name to assign these images:IllumAGP
+    Name to assign these objects:Speckle
+    Select the image type:Illumination function
+    Set intensity range from:Image metadata
+    Retain outlines of loaded objects?:No
+    Name the outline image:LoadedOutlines
+    Select the rule criteria:and (file does endwith "IllumMito.mat")
+    Name to assign these images:IllumMito
+    Name to assign these objects:Object1
+    Select the image type:Illumination function
+    Set intensity range from:Image metadata
+    Retain outlines of loaded objects?:No
+    Name the outline image:LoadedOutlines
+
+Groups:[module_num:4|svn_version:\'Unknown\'|variable_revision_number:2|show_window:True|notes:\x5B\'The Groups module optionally allows you to split your list of images into image subsets (groups) which will be processed independently of each other. Examples of groupings include screening batches, microtiter plates, time-lapse movies, etc.\', \'\', \'No grouping is needed, so this module is not enabled.\'\x5D|batch_state:array(\x5B\x5D, dtype=uint8)|enabled:True|wants_pause:False]
+    Do you want to group your images?:No
+    grouping metadata count:1
+    Metadata category:None
+
+CorrectIlluminationApply:[module_num:5|svn_version:\'Unknown\'|variable_revision_number:3|show_window:True|notes:\x5B\'Correct each image channel by dividing by the respective illumination correction image. See Singh et al. J Microscopy, 256(3)\x3A 231-6, 2014 for more details.\'\x5D|batch_state:array(\x5B\x5D, dtype=uint8)|enabled:True|wants_pause:False]
+    Select the input image:OrigDNA
+    Name the output image:DNA
+    Select the illumination function:IllumDNA
+    Select how the illumination function is applied:Divide
+    Select the input image:OrigER
+    Name the output image:ER
+    Select the illumination function:IllumER
+    Select how the illumination function is applied:Divide
+    Select the input image:OrigRNA
+    Name the output image:RNA
+    Select the illumination function:IllumRNA
+    Select how the illumination function is applied:Divide
+    Select the input image:OrigAGP
+    Name the output image:AGP
+    Select the illumination function:IllumAGP
+    Select how the illumination function is applied:Divide
+    Select the input image:OrigMito
+    Name the output image:Mito
+    Select the illumination function:IllumMito
+    Select how the illumination function is applied:Divide
+
+IdentifyPrimaryObjects:[module_num:6|svn_version:\'Unknown\'|variable_revision_number:10|show_window:True|notes:\x5B\'Identify the nuclei based on the DNA image.\', \'\', \'The settings here were chosen based on the image data and acqusition settings provided in Gustafsdottir et al, PLoS One 8, e80999, 2013. Changing the image acqusition settings may affect a number of these parameters\x3A\', \'* Typical diameter of objects\x3A From the display window menu, select Tools > Measure length. Click/drag to measure diameters of a few select nuclei.\', \'* Thresholding strategy\x3A Global works fine in most cases, but Adaptive may work better if the background has non-uniform illumination. However, the illumination correction in CorrectIlluminationApply should mitigate the latter.\', \'* Thresholding method\x3A Select the method which provides the best foreground/background separation. Adjust the threshold corrrection factor if the threshold is concistently above/below where you want it to be for most images tested. \', \'* Lower threshold bound\x3A Mouse over the background region to see the intensity variation in the lower-right of the display window.\', \'* Method to distinguish clumped objects\x3A Use "Intensity" if the intensity gradient dividing touching nuclei are pretty clear, even if clumpy. Use "Shape" if the nuclei are usually well-separated (and "Intensity" doesn\\\'t work).\', \'* Method to draw dividing lines between clumped objects\x3A "Intensity" usually gives more realistic-looking boundary lines.\', \'* Size of smoothing filter/minimum distance between local maxima\x3A Override defaults if nuclei are getting under/over-segmented.\', \'* Fill holes in identified objects\x3A Currently set to "Never" since holes in nuclei may represent a phenotype. \'\x5D|batch_state:array(\x5B\x5D, dtype=uint8)|enabled:True|wants_pause:False]
+    Select the input image:DNA
+    Name the primary objects to be identified:Nuclei
+    Typical diameter of objects, in pixel units (Min,Max):15,150
+    Discard objects outside the diameter range?:Yes
+    Try to merge too small objects with nearby larger objects?:No
+    Discard objects touching the border of the image?:Yes
+    Method to distinguish clumped objects:Shape
+    Method to draw dividing lines between clumped objects:Shape
+    Size of smoothing filter:20
+    Suppress local maxima that are closer than this minimum allowed distance:20
+    Speed up by using lower-resolution image to find local maxima?:Yes
+    Name the outline image:PrimaryOutlines
+    Fill holes in identified objects?:After both thresholding and declumping
+    Automatically calculate size of smoothing filter for declumping?:No
+    Automatically calculate minimum allowed distance between local maxima?:No
+    Retain outlines of the identified objects?:No
+    Automatically calculate the threshold using the Otsu method?:Yes
+    Enter Laplacian of Gaussian threshold:0.5
+    Automatically calculate the size of objects for the Laplacian of Gaussian filter?:Yes
+    Enter LoG filter diameter:5
+    Handling of objects if excessive number of objects identified:Erase
+    Maximum number of objects:700
+    Threshold setting version:1
+    Threshold strategy:Global
+    Thresholding method:Otsu
+    Select the smoothing method for thresholding:Automatic
+    Threshold smoothing scale:1
+    Threshold correction factor:1.0
+    Lower and upper bounds on threshold:0.0,1.0
+    Approximate fraction of image covered by objects?:0.01
+    Manual threshold:0.0
+    Select the measurement to threshold with:None
+    Select binary image:None
+    Masking objects:From image
+    Two-class or three-class thresholding?:Two classes
+    Minimize the weighted variance or the entropy?:Weighted variance
+    Assign pixels in the middle intensity class to the foreground or the background?:Foreground
+    Method to calculate adaptive window size:Image size
+    Size of adaptive window:10
+
+IdentifySecondaryObjects:[module_num:7|svn_version:\'Unknown\'|variable_revision_number:9|show_window:True|notes:\x5B\'Identify the cells using the nuclei objects plus an image representative of the cell body. Several of the channels could suffice for this purpose, but we chose the RNA channel as optimal. Using the "Watershed-Image" option over the default "Propagate" methods seems to often better capture the cell boundaries, especially when the cells are confluent.\'\x5D|batch_state:array(\x5B\x5D, dtype=uint8)|enabled:True|wants_pause:False]
+    Select the input objects:Nuclei
+    Name the objects to be identified:Cells
+    Select the method to identify the secondary objects:Propagation
+    Select the input image:AGP
+    Number of pixels by which to expand the primary objects:10
+    Regularization factor:0.05
+    Name the outline image:CellOutlines
+    Retain outlines of the identified secondary objects?:Yes
+    Discard secondary objects touching the border of the image?:No
+    Discard the associated primary objects?:No
+    Name the new primary objects:FilteredNuclei
+    Retain outlines of the new primary objects?:No
+    Name the new primary object outlines:FilteredNucleiOutlines
+    Fill holes in identified objects?:Yes
+    Threshold setting version:1
+    Threshold strategy:Global
+    Thresholding method:Otsu
+    Select the smoothing method for thresholding:No smoothing
+    Threshold smoothing scale:1
+    Threshold correction factor:0.9
+    Lower and upper bounds on threshold:0.003,1.0
+    Approximate fraction of image covered by objects?:0.01
+    Manual threshold:0.0
+    Select the measurement to threshold with:None
+    Select binary image:None
+    Masking objects:From image
+    Two-class or three-class thresholding?:Three classes
+    Minimize the weighted variance or the entropy?:Weighted variance
+    Assign pixels in the middle intensity class to the foreground or the background?:Foreground
+    Method to calculate adaptive window size:Image size
+    Size of adaptive window:10
+
+IdentifyTertiaryObjects:[module_num:8|svn_version:\'Unknown\'|variable_revision_number:2|show_window:True|notes:\x5B\'The cytoplasm is identified as the cell body "minus" the nuclei.\'\x5D|batch_state:array(\x5B\x5D, dtype=uint8)|enabled:True|wants_pause:False]
+    Select the larger identified objects:Cells
+    Select the smaller identified objects:Nuclei
+    Name the tertiary objects to be identified:Cytoplasm
+    Name the outline image:CytoplasmOutlines
+    Retain outlines of the tertiary objects?:No
+    Shrink smaller object prior to subtraction?:Yes
+
+MeasureObjectIntensity:[module_num:9|svn_version:\'Unknown\'|variable_revision_number:3|show_window:True|notes:\x5B\'Measure the intensity characteristics from all channels, within all objects.\'\x5D|batch_state:array(\x5B\x5D, dtype=uint8)|enabled:True|wants_pause:False]
+    Hidden:5
+    Select an image to measure:DNA
+    Select an image to measure:ER
+    Select an image to measure:RNA
+    Select an image to measure:AGP
+    Select an image to measure:Mito
+    Select objects to measure:Nuclei
+    Select objects to measure:Cells
+    Select objects to measure:Cytoplasm
+
+MeasureObjectNeighbors:[module_num:10|svn_version:\'Unknown\'|variable_revision_number:2|show_window:True|notes:\x5B\'Measure the adjacency statistics for the nuclei. Nuclei within 1 pixel of each other are considered neighbors.\'\x5D|batch_state:array(\x5B\x5D, dtype=uint8)|enabled:True|wants_pause:False]
+    Select objects to measure:Nuclei
+    Select neighboring objects to measure:Nuclei
+    Method to determine neighbors:Within a specified distance
+    Neighbor distance:1
+    Retain the image of objects colored by numbers of neighbors?:No
+    Name the output image:ObjectNeighborCount
+    Select colormap:Default
+    Retain the image of objects colored by percent of touching pixels?:No
+    Name the output image:PercentTouching
+    Select a colormap:Default
+
+MeasureObjectNeighbors:[module_num:11|svn_version:\'Unknown\'|variable_revision_number:2|show_window:True|notes:\x5B\'Measure the adjacency statistics for the cells. Cells within 5 pixels of each other are considered neighbors.\'\x5D|batch_state:array(\x5B\x5D, dtype=uint8)|enabled:True|wants_pause:False]
+    Select objects to measure:Cells
+    Select neighboring objects to measure:Cells
+    Method to determine neighbors:Within a specified distance
+    Neighbor distance:5
+    Retain the image of objects colored by numbers of neighbors?:No
+    Name the output image:ObjectNeighborCount
+    Select colormap:Default
+    Retain the image of objects colored by percent of touching pixels?:No
+    Name the output image:PercentTouching
+    Select a colormap:Default
+
+MeasureObjectRadialDistribution:[module_num:12|svn_version:\'Unknown\'|variable_revision_number:3|show_window:True|notes:\x5B"Measure the radial intensity distribution characteristics in all objects. The object is \'binned\' into radial annuli and statistics are measured for each bin."\x5D|batch_state:array(\x5B\x5D, dtype=uint8)|enabled:True|wants_pause:False]
+    Hidden:4
+    Hidden:1
+    Hidden:1
+    Select an image to measure:ER
+    Select an image to measure:AGP
+    Select an image to measure:Mito
+    Select an image to measure:RNA
+    Select objects to measure:Cells
+    Object to use as center?:These objects
+    Select objects to use as centers:None
+    Scale the bins?:Yes
+    Number of bins:4
+    Maximum radius:100
+
+MeasureObjectSizeShape:[module_num:13|svn_version:\'Unknown\'|variable_revision_number:1|show_window:True|notes:\x5B\'Measure the morpholigical features of all objects.\'\x5D|batch_state:array(\x5B\x5D, dtype=uint8)|enabled:True|wants_pause:False]
+    Select objects to measure:Nuclei
+    Select objects to measure:Cells
+    Select objects to measure:Cytoplasm
+    Calculate the Zernike features?:Yes
+
+MeasureTexture:[module_num:14|svn_version:\'Unknown\'|variable_revision_number:3|show_window:True|notes:\x5B\'Measure the texture features in all objects, against all 5 channels, using multiple spatial scales.\'\x5D|batch_state:array(\x5B\x5D, dtype=uint8)|enabled:True|wants_pause:False]
+    Hidden:5
+    Hidden:3
+    Hidden:2
+    Select an image to measure:DNA
+    Select an image to measure:ER
+    Select an image to measure:RNA
+    Select an image to measure:AGP
+    Select an image to measure:Mito
+    Select objects to measure:Cells
+    Select objects to measure:Cytoplasm
+    Select objects to measure:Nuclei
+    Texture scale to measure:3
+    Angles to measure:Horizontal
+    Texture scale to measure:5
+    Angles to measure:Horizontal
+    Measure Gabor features?:Yes
+    Number of angles to compute for Gabor:4
+
+SaveImages:[module_num:15|svn_version:\'Unknown\'|variable_revision_number:11|show_window:True|notes:\x5B"Save the nuclei outlines to a file, in PNG format, in a \'outlines\' sub-folder under the Default Output Folder."\x5D|batch_state:array(\x5B\x5D, dtype=uint8)|enabled:True|wants_pause:False]
+    Select the type of image to save:Image
+    Select the image to save:CellOutlines
+    Select the objects to save:None
+    Select the module display window to save:None
+    Select method for constructing file names:Single name
+    Select image name for file prefix:None
+    Enter single file name:\\\\g<CPD_WELL_POSITION>_\\\\g<Site>_cells
+    Number of digits:4
+    Append a suffix to the image file name?:No
+    Text to append to the image name:Do not use
+    Saved file format:png
+    Output file location:Default Output Folder sub-folder\x7Coutlines/\\\\g<PlateID>
+    Image bit depth:8
+    Overwrite existing files without warning?:Yes
+    When to save:Every cycle
+    Rescale the images? :No
+    Save as grayscale or color image?:Grayscale
+    Select colormap:gray
+    Record the file and path information to the saved image?:Yes
+    Create subfolders in the output folder?:No
+    Base image folder:Elsewhere...\x7C\\\\\\\\argon\\\\imaging_analysis\\\\2015_07_14_RSV_SyncytiaQuantification_SteffenJaensch_Janssen\\\\2016_01_11_cv7000_phenix
+    Saved movie format:avi
+
+ExportToDatabase:[module_num:16|svn_version:\'Unknown\'|variable_revision_number:26|show_window:True|notes:\x5B\'Write the collected per-image and per-cell features to a MySQL database. A CellProfiler Analyst properties file is also created as well.\', \'\', \'Change the table prefix to same as the folder (tables cannot start with a number)\'\x5D|batch_state:array(\x5B\x5D, dtype=uint8)|enabled:True|wants_pause:False]
+    Database type:MySQL
+    Database name:dbname
+    Add a prefix to table names?:Yes
+    Table prefix:analysis_
+    SQL file prefix:SQL_
+    Output file location:Default Output Folder\x7C/imaging/analysis/2008_12_04_Imaging_CDRP_for_MLPCN/PILOT_RERUN_GOODZERNICKES
+    Create a CellProfiler Analyst properties file?:Yes
+    Database host:hostname
+    Username:username
+    Password:password
+    Name the SQLite database file:DefaultDB.db
+    Calculate the per-image mean values of object measurements?:No
+    Calculate the per-image median values of object measurements?:No
+    Calculate the per-image standard deviation values of object measurements?:No
+    Calculate the per-well mean values of object measurements?:No
+    Calculate the per-well median values of object measurements?:No
+    Calculate the per-well standard deviation values of object measurements?:No
+    Export measurements for all objects to the database?:All
+    Select the objects:
+    Maximum # of characters in a column name:64
+    Create one table per object, a single object table or a single object view?:Single object table
+    Enter an image url prepend if you plan to access your files via http:
+    Write image thumbnails directly to the database?:Yes
+    Select the images for which you want to save thumbnails:OrigAGP,OrigDNA,OrigER,OrigMito,OrigRNA
+    Auto-scale thumbnail pixel intensities?:No
+    Select the plate type:384
+    Select the plate metadata:PlateID
+    Select the well metadata:CPD_WELL_POSITION
+    Include information for all images, using default values?:No
+    Properties image group count:5
+    Properties group field count:1
+    Properties filter field count:0
+    Workspace measurement count:1
+    Experiment name:analysis
+    Which objects should be used for locations?:Nuclei
+    Enter a phenotype class table name if using the classifier tool:
+    Export object relationships?:No
+    Overwrite without warning?:Data only
+    Access CPA images via URL?:Yes
+    Select an image to include:OrigDNA
+    Use the image name for the display?:No
+    Image name:DNA
+    Channel color:red
+    Select an image to include:OrigER
+    Use the image name for the display?:No
+    Image name:ER
+    Channel color:green
+    Select an image to include:OrigRNA
+    Use the image name for the display?:No
+    Image name:RNA
+    Channel color:blue
+    Select an image to include:OrigAGP
+    Use the image name for the display?:No
+    Image name:AGP
+    Channel color:cyan
+    Select an image to include:OrigMito
+    Use the image name for the display?:No
+    Image name:Mito
+    Channel color:magenta
+    Do you want to add group fields?:No
+    Enter the name of the group:
+    Enter the per-image columns which define the group, separated by commas:ImageNumber, Image_Metadata_Plate, Image_Metadata_Well
+    Do you want to add filter fields?:No
+    Automatically create a filter for each plate?:No
+    Create a CellProfiler Analyst workspace file?:No
+    Select the measurement display tool:ScatterPlot
+    Type of measurement to plot on the X-axis:Image
+    Enter the object name:Image
+    Select the X-axis measurement:
+    Select the X-axis index:ImageNumber
+    Type of measurement to plot on the Y-axis:Image
+    Enter the object name:Image
+    Select the Y-axis measurement:
+    Select the Y-axis index:ImageNumber
+
+CreateBatchFiles:[module_num:17|svn_version:\'Unknown\'|variable_revision_number:6|show_window:True|notes:\x5B\'This module is used only if running the pipeline on a computing cluster; it is used to convert all paths to the format as seen by the computing node. If not using a computing cluster (i.e, you are running the pipeline locally), disable this module by clicking on the green checkmark to the left of the module name; the checkmark is grayed out when the module is disabled.\'\x5D|batch_state:array(\x5B\x5D, dtype=uint8)|enabled:True|wants_pause:False]
+    Store batch files in default output folder?:Yes
+    Output folder path:/imaging/analysis/2008_12_04_Imaging_CDRP_for_MLPCN/PILOT_RERUN_GOODZERNICKES
+    Are the cluster computers running Windows?:No
+    Hidden\x3A in batch mode:No
+    Hidden\x3A in distributed mode:No
+    Hidden\x3A default input folder at time of save:/cbnt/cbimage/HCS/GustafsdottirSigrun
+    Hidden\x3A revision number:9655
+    Hidden\x3A from old matlab:No
+    Local root path:/cbnt/cbimage/HCS
+    Cluster root path:/cbnt/cbimage/HCS
