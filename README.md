@@ -1,7 +1,7 @@
 Supporting data for "A dataset of images and morphological profiles of 30,000 small-molecule treatments using the Cell Painting assay"
 ===============================================================================
 
-Bray, M; Gustafsdottir, S, M; Rohban, M; Singh, S; Ljosa, V; Sokolnicki, K, L; Bittker, J, A; Bodycombe, N, E; Dančík, V; Hasaka, T, P; Hon, C, S; Kemp, M, M; Li, K; Walpita, D; Wawer, M, J; Golub, T, R; Schreiber, S, L; Clemons, P, A; Shamji, A, F; Carpenter, A, E
+Bray, M-A; Gustafsdottir, S, M; Rohban, M, H; Singh, S; Ljosa, V; Sokolnicki, K, L; Bittker, J, A; Bodycombe, N, E; Dančík, V; Hasaka, T, P; Hon, C, S; Kemp, M, M; Li, K; Walpita, D; Wawer, M, J; Golub, T, R; Schreiber, S, L; Clemons, P, A; Shamji, A, F; Carpenter, A, E
 2016. GigaScience Database. http://dx.doi.org/10.5524/100200
 
 Contact:
