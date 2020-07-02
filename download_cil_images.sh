@@ -7,7 +7,7 @@ for plate in 24277 24278 24279 24280 24293 24294 24295 24296 24297 24300 24301 2
 do
 	for channel in Hoechst ERSyto ERSytoBleed Ph_golgi Mito;
 	do
-		URL_LIST="http://ccdb-portal.crbs.ucsd.edu:8080/broad_data/plate_${plate}/${plate}-${channel}.zip $URL_LIST"
+		URL_LIST="https://cildata.crbs.ucsd.edu/broad_data/plate_${plate}/${plate}-${channel}.zip $URL_LIST"
 	done
 done
 
