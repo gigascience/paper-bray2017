@@ -43,5 +43,12 @@ image_curation_statistics.csv - Table summarizing the curation statistics. The f
  - Num_blurry_sites: Total number of sites labelled as blurry/out-of-focus by the quality control workflow.
  - Num_saturated_sites: Total number of sites labelled as containing saturation artifacts by the quality control workflow.
 
-COPYRIGHT
+Additional details:
+------
+
+- As described in [Wawer 2014](https://www.pnas.org/doi/10.1073/pnas.1410933111), changes in cell morphology were measured after 48 h of compound treatment.
+
+Copyright
+------
+
 To the extent possible under law, Anne Carpenter has waived all copyright and related or neighboring rights to this dataset. This work is published from: United States.
